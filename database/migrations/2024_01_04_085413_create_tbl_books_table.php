@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('book_uniq_idx')->unique();
             $table->string('bookname');
             $table->string('cover_photo')->nullable();
-            $table->integer('prize')->nullable();
             $table->timestamp('created_timetick')->default(DB::raw('current_timestamp'));
         });
     }

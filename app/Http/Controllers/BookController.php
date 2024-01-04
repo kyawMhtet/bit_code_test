@@ -24,7 +24,7 @@ class BookController extends Controller
         if ($books->isEmpty()) {
             return response()->json(['error' => 'Internal Server Error'], 500);
         }
-        return response()->json($books);
+        return response()->json($books)->header('Content-Type', 'application/json');
     }
 
 
@@ -59,6 +59,10 @@ class BookController extends Controller
     {
         //
         // return $request->all();
+        $validation = $this->validation($request);
+        if ($validation->fails()) {
+            return redirect()->back()->withErrors($validation)->withInput();
+        }
 
         $file = $request->file('cover_photo');
         $fileName = uniqid() . $file->getClientOriginalName();
@@ -106,6 +110,10 @@ class BookController extends Controller
     {
         //
         // return $id;
+        $validation = $this->validation($request);
+        if ($validation->fails()) {
+            return redirect()->back()->withErrors($validation)->withInput();
+        }
 
         $book = Tbl_book::where('idx', $id)->first();
         // return $book;
@@ -157,11 +165,13 @@ class BookController extends Controller
     private function validation($request)
     {
         return Validator::make($request->all(), [
-            'name' => 'required',
-            ''
+            'book_uniq_idx' => 'required',
+            'bookname' => 'required',
+            'co_id' => 'required',
+            'publisher_id' => 'required',
         ], [
-            'name.required' => 'Name required.',
-
+            'co_id.required' => 'The Content Owner field is required',
+            'publisher_id.required' => 'The publisher field is required',
         ]);
     }
 }

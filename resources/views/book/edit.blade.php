@@ -12,6 +12,10 @@
         <div class="form-group">
             <label for="">Book Name :</label>
             <input type="text" placeholder="Enter Book Name" name="name" value="{{ $book->bookname }}" class="form-control">
+
+            @error('bookname')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
         </div>
 
         <div class="form-group my-3">
@@ -24,6 +28,10 @@
                     @endif>{{ $co->name }}</option>
                 @endforeach
             </select>
+
+            @error('co_id')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
         </div>
 
         <div class="form-group my-3">
@@ -37,6 +45,10 @@
                     
                 @endforeach
             </select>
+
+            @error('publisher_id')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
         </div>
 
 

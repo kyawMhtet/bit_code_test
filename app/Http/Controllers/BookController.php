@@ -21,7 +21,7 @@ class BookController extends Controller
     {
         $books = Tbl_book::with('contentOwner', 'publisher')->get();
 
-        if (!$books) {
+        if ($books->isEmpty()) {
             return response()->json(['error' => 'Internal Server Error'], 500);
         }
         return response()->json($books);
@@ -59,6 +59,7 @@ class BookController extends Controller
     {
         //
         // return $request->all();
+
         $file = $request->file('cover_photo');
         $fileName = uniqid() . $file->getClientOriginalName();
         $file->storeAs('public', $fileName);

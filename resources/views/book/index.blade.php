@@ -7,11 +7,22 @@
 @section('content')
 
 <div class="container-fluid mt-4">
-    <h2 class="text-center">
+    <div class="row">
+            <h2 class="text-center mt-4">
         <b>Book Listing Page</b>
     </h2>
+        @if (session()->has('success'))
+        <div class="col-3 offset-9">
+            <div class="alert alert-sm alert-success alert-dismissible fade show text-center" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+        </div>
+        @endif
+    </div>
 
-    <div class="mt-4">
+
+    <div class="">
         <a href="{{ route('book.create') }}" class="btn btn-primary float-end my-3">Create Book</a>
         <table id="books-table" class="">
             <thead>

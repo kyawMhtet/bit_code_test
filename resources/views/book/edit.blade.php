@@ -4,6 +4,9 @@
 @section('content')
 
 
+<a href="{{ route('book.index') }}" class="btn btn-sm btn-dark mt-2 offset-3"> << Book Lists</a>
+
+
 <div class="mt-4 w-50 mx-auto px-4 py-3 border shadow-sm">
     <h4 class="text-center">Edit Book</h4>
     <form action="{{ route('book.update', $book->idx) }}" method="POST" enctype="multipart/form-data">
@@ -13,7 +16,7 @@
             <label for="">Book Name :</label>
             <input type="text" placeholder="Enter Book Name" name="name" value="{{ $book->bookname }}" class="form-control">
 
-            @error('bookname')
+            @error('name')
             <small class="text-danger">{{ $message }}</small>
         @enderror
         </div>

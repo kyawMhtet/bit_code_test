@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div class="container-fluid mt-4">
+<div class="container-fluid">
     <div class="row">
             <h2 class="text-center mt-4">
         <b>Book Listing Page</b>

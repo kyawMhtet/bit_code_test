@@ -58,7 +58,6 @@ class BookController extends Controller
     public function store(Request $request)
     {
         //
-        // return $request->all();
         $validation = $this->validation($request);
         if ($validation->fails()) {
             return redirect()->back()->withErrors($validation)->withInput();
@@ -110,6 +109,7 @@ class BookController extends Controller
     {
         //
         // return $id;
+        // return $request->all();
         $validation = $this->validation($request);
         if ($validation->fails()) {
             return redirect()->back()->withErrors($validation)->withInput();
@@ -165,10 +165,10 @@ class BookController extends Controller
     private function validation($request)
     {
         return Validator::make($request->all(), [
-            'book_uniq_idx' => 'required',
-            'bookname' => 'required',
+            'name' => 'required',
             'co_id' => 'required',
             'publisher_id' => 'required',
+
         ], [
             'co_id.required' => 'The Content Owner field is required',
             'publisher_id.required' => 'The publisher field is required',

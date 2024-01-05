@@ -3,19 +3,9 @@
 
 @section('content')
 
-{{-- errors --}}
-{{-- @if ($errors->any())
-<div class="alert alert-danger w-50 mx-auto mt-3">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-    
-</div>
-@endif --}}
-
 {{--  --}}
+<a href="{{ route('book.index') }}" class="btn btn-sm btn-dark mt-2 offset-3"> << Book Lists</a>
+
 <div class="mt-3 w-50 mx-auto px-4 py-3 border shadow-sm">
     <h4 class="text-center">Create Book</h4>
     <form action="{{ route('book.store') }}" method="POST" enctype="multipart/form-data">
@@ -24,7 +14,7 @@
             <label for="">Book Name :</label>
             <input type="text" placeholder="Enter Book Name" name="name" class="form-control">
 
-            @error('bookname')
+            @error('name')
                 <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
